@@ -33,6 +33,10 @@ a {
     text-decoration: none;
 }
 
+img {
+	max-width: 100%;
+}
+
 /* Base Layout Styles */
 
 /* A wrapper (a container) is commonly used to center a layout on the page. 
@@ -43,14 +47,11 @@ There are two ways to create a container: using the body tag or adding a div. */
 
 .name {
     font-size: 1.25em;
+    margin: 0;
 }
 
-.name,
-.main-nav li {
-    text-align: center;
-    background: #fff;
-    margin-top: 6px;
-    margin-bottom: 6px;
+.main-nav {
+    margin-top: 5px;
 }
 
 /* If we set the links display value to block, it will make them as wide as their 
@@ -58,9 +59,9 @@ parent elements, so full width and height of the links will be a clickable area.
 
 .name a, 
 .main-nav a {
-    padding: 10px 15px;
     text-align: center;
-    display: block; 
+    display: block;
+    padding: 10px 15px; 
 }
 
     .main-nav a {
@@ -75,11 +76,21 @@ parent elements, so full width and height of the links will be a clickable area.
 
 /* Layout Containers */
 
-/* Using auto for margin centers the wrappers in the browser. */
+.banner {
+	color: #fff;
+    background: #3acec2;
+    padding: 3.2em 0; 
+    margin-bottom: 60px; 
+}
 
-.container {
-    padding-left: 1em;
+.banner, 
+.main-footer {
+    text-align: center;
+}
+
+.col {
     padding-right: 1em;
+    padding-left: 1em;
 }
 
 /* A parent container with floated elements may not always collapse to no height at all; 
@@ -90,18 +101,28 @@ height of its floated child elements: setting the parent element's overflow valu
 hidden or auto or clearing the floats with a CSS pseudo-element */
 
 .main-header {
-    padding-top: 1.5em; 
-    padding-bottom: 1.5em;
-    background: #3acec2;
+    padding-top: .5em; 
+    padding-bottom: .5em;
+    /* background: #fff;
     margin-bottom: 30px;
-    /* overflow: hidden; */
+    overflow: hidden; */
 }
 
 .main-footer {
-    text-align: center;
+    margin-top: 30px;  
     padding: 2em 0;
     background: #d9e4ea;
     min-height: 89px;;
+}
+
+/* Page Elements */
+
+.logo {
+	width: 190px;
+}
+
+.headline {
+    margin-bottom: 0;
 }
 
 /* Media Queries */
@@ -110,15 +131,13 @@ hidden or auto or clearing the floats with a CSS pseudo-element */
 and minimal amount of code to style a page for a small, mobile device first. 
 Then, using media queries, you add breakpoints which adjust the layout for wider screens. */
 
-/* The max-width value of 1000px establishes the maximum size that the growing is 
-allowed to reach. For example, in a browser viewport that is 1400 pixels or wider, 
-the container will always be 1000 pixels wide and will not grow any wider. */
+/* Giving the container a width prevents the layout from stratching to wide on larger
+screens, and setting the left and right margins to auto centers the container.  */
 
 @media (min-width: 769px) {
     
     .container {
-        width: 85%;
-        max-width: 1150px;
+        width: 90%;
         margin: 0 auto;
     }
 
@@ -126,9 +145,9 @@ the container will always be 1000 pixels wide and will not grow any wider. */
     content on the page. 1 VH - viewport height - is equal to 1/100 of the height of
     the viewport. */
 
-    .wrap {
+    /* .wrap {
         min-height: calc(100vh - 89px);
-    }
+    } */
 
     /* Inline elements, like images, links and span tags, do not create line breaks in 
     a layout; they appear on the same line as the content and elements beside them.
@@ -145,10 +164,11 @@ the container will always be 1000 pixels wide and will not grow any wider. */
     are taken out of the normal document flow and content flows, or wraps, alongside 
     them. */
     
-    /* .name, 
+    /* .name,  */
     .main-nav li {
         display: inline-block;
-    } */
+        margin-left: 15px; 
+    }
 
     /* This method "undoes" the default whitespace. The negative margin pulls the list 
     items towards each other to close the gaps. */
@@ -169,31 +189,23 @@ the container will always be 1000 pixels wide and will not grow any wider. */
         float: right;
     }
 
-        .main-nav li {
-            float: left; 
-            margin-left: 12px; 
-        }
+    /* .main-nav li {
+        float: left; 
+        margin-left: 12px; 
+    } */
 
-    .name {
+    .name,
+    .col {
         float: left; 
     }
 
-    /* Columns */
-
-    /* The spaces between columns are called gutters. */
-    
-    .col {
-        float: right; 
-        padding-left: 1em;
-        padding-right: 1em;
-    }
-
-    .primary {
-        width: 40%;
-    }
-
+    .primary,
     .secondary {
-        width: 60%;
+        width: 50%; 
+    }
+
+    .tagline {
+        font-size: 1.4em;  
     }
 
     /* A floated element is technically a block-level element (it accepts any width, 
@@ -201,11 +213,11 @@ the container will always be 1000 pixels wide and will not grow any wider. */
     it doesn't exist on a line of its own, and surrounding content flows around it. */
     
     .feat-img {
-        width: 300px;
+        /* width: 300px;
         float: left;
         margin-top: 5px;
         margin-right: 25px;
-        margin-bottom: 25px; 
+        margin-bottom: 25px;  */
         padding: 10px;
         border: solid 1px #d9e4ea; 
     }
@@ -218,5 +230,26 @@ the container will always be 1000 pixels wide and will not grow any wider. */
         content: "";
         display: table;
         clear: both;
+    }
+}
+
+@media (min-width: 1025px) {
+
+    /* The max-width value of 1150px establishes the maximum size that the growing is 
+    allowed to reach. For example, in a browser viewport that is 1400 pixels or wider, 
+    the container will always be 1000 pixels wide and will not grow any wider. */
+    
+    .container {
+        width: 80%; 
+        max-width: 1150px;  
+    }
+
+    .primary {
+        width: 40%;
+    }
+
+    .secondary,
+    .tertiary {
+        width: 30%;
     }
 }
