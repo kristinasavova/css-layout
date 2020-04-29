@@ -1,0 +1,222 @@
+/* Base Element Styles */
+
+/* Border-box forces any padding and borders into the width and height of an element 
+instead of expanding it. */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Varela Round', sans-serif;
+    line-height: 1.6;
+    color: #3a3a3a; 
+}
+
+p {
+    font-size: .95em;
+    margin-bottom: 1.5em;
+}
+
+h2,
+h3,
+a {
+    color: #093a58; 
+}
+
+h2,
+h3 {
+    margin-top: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Base Layout Styles */
+
+/* A wrapper (a container) is commonly used to center a layout on the page. 
+The wrapper keeps a layout from looking too wide or too narrow depending on the device.
+There are two ways to create a container: using the body tag or adding a div. */
+
+/* Navigation */
+
+.name {
+    font-size: 1.25em;
+}
+
+.name,
+.main-nav li {
+    text-align: center;
+    background: #fff;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+/* If we set the links display value to block, it will make them as wide as their 
+parent elements, so full width and height of the links will be a clickable area. */
+
+.name a, 
+.main-nav a {
+    padding: 10px 15px;
+    text-align: center;
+    display: block; 
+}
+
+    .main-nav a {
+        font-size: .95em;
+        color: #3acec2;
+        text-transform: uppercase;
+    }
+
+    .main-nav a:hover {
+        color: #093a58;
+    }
+
+/* Layout Containers */
+
+/* Using auto for margin centers the wrappers in the browser. */
+
+.container {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+/* A parent container with floated elements may not always collapse to no height at all; 
+if the container includes a padding or height value, it'll have some visible height. */
+
+/* There are a two common ways to force a collapsed element to expand to the full 
+height of its floated child elements: setting the parent element's overflow value to 
+hidden or auto or clearing the floats with a CSS pseudo-element */
+
+.main-header {
+    padding-top: 1.5em; 
+    padding-bottom: 1.5em;
+    background: #3acec2;
+    margin-bottom: 30px;
+    /* overflow: hidden; */
+}
+
+.main-footer {
+    text-align: center;
+    padding: 2em 0;
+    background: #d9e4ea;
+    min-height: 89px;;
+}
+
+/* Media Queries */
+
+/* When you use a mobile-first layout approach, you serve the basic layout styles 
+and minimal amount of code to style a page for a small, mobile device first. 
+Then, using media queries, you add breakpoints which adjust the layout for wider screens. */
+
+/* The max-width value of 1000px establishes the maximum size that the growing is 
+allowed to reach. For example, in a browser viewport that is 1400 pixels or wider, 
+the container will always be 1000 pixels wide and will not grow any wider. */
+
+@media (min-width: 769px) {
+    
+    .container {
+        width: 85%;
+        max-width: 1150px;
+        margin: 0 auto;
+    }
+
+    /* A sticky footer sticks to the bottom of the page regardless of the amount of 
+    content on the page. 1 VH - viewport height - is equal to 1/100 of the height of
+    the viewport. */
+
+    .wrap {
+        min-height: calc(100vh - 89px);
+    }
+
+    /* Inline elements, like images, links and span tags, do not create line breaks in 
+    a layout; they appear on the same line as the content and elements beside them.
+    Block-level elements, like divs, paragraphs and headings, stack on top of 
+    each other and expand to fill their parent. */
+
+    /* The browser does not apply width and height properties, or top and bottom margin 
+    settings to inline elements. They only accept left/right margins and any padding. */
+
+    /* The advantage to using inline-block is that you can style inline-block elements as
+    block elements. You can apply width, height, top/bottom margins and padding. */
+
+    /* The biggest difference between floats and inline-block is that floated elements 
+    are taken out of the normal document flow and content flows, or wraps, alongside 
+    them. */
+    
+    /* .name, 
+    .main-nav li {
+        display: inline-block;
+    } */
+
+    /* This method "undoes" the default whitespace. The negative margin pulls the list 
+    items towards each other to close the gaps. */
+    
+    /* .main-nav li {
+        margin-right: -0.3125em; 
+    } */
+
+    /* With floats, we don't have to worry about the the extra whitespace that can appear 
+    when using inline or inline-block. Floated elements will sit adjacent to each 
+    other regardless of the HTML whitespace between them. */
+
+    /* The floats in the header caused a common, undesirable layout behavior you'll 
+    likely face when using floats. When you float elements, the parent container no longer 
+    honors the space of the floated elements inside it, so its height collapses. */
+    
+    .main-nav {
+        float: right;
+    }
+
+        .main-nav li {
+            float: left; 
+            margin-left: 12px; 
+        }
+
+    .name {
+        float: left; 
+    }
+
+    /* Columns */
+
+    /* The spaces between columns are called gutters. */
+    
+    .col {
+        float: right; 
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .primary {
+        width: 40%;
+    }
+
+    .secondary {
+        width: 60%;
+    }
+
+    /* A floated element is technically a block-level element (it accepts any width, 
+    height, padding or margins values), but it behaves like an inline element because 
+    it doesn't exist on a line of its own, and surrounding content flows around it. */
+    
+    .feat-img {
+        width: 300px;
+        float: left;
+        margin-top: 5px;
+        margin-right: 25px;
+        margin-bottom: 25px; 
+        padding: 10px;
+        border: solid 1px #d9e4ea; 
+    }
+
+    /* A clearfix fixes the collapsing issue by forcing a container to expand and 
+    contain the floated elements. The clear property with the value both clears any 
+    collapsed space created by floats on both sides of the container. */
+
+    .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
