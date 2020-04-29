@@ -25,8 +25,13 @@ a {
 }
 
 h2,
-h3 {
+h3,
+h4 {
     margin-top: 0;
+}
+
+h4 {
+    margin-bottom: .4em;
 }
 
 a {
@@ -35,6 +40,31 @@ a {
 
 img {
 	max-width: 100%;
+}
+
+/* Elements with absolute positioning are neither affected by or do not affect 
+other elements in the normal flow of the page. If no parent element has a 
+relative position, the browser viewport is the positioning context by default. */
+
+/* An element with relative positioning gives you the control to absolutely 
+position elements anywhere inside it. An element with absolute positioning is 
+always relative to the first parent that has a relative position.*/
+
+figure {
+	margin: 0;
+    line-height: 0;
+    position: relative; 
+}
+
+figcaption {
+	font-size: .9em;
+	line-height: 1.5;
+	color: #fff;
+	padding: 1em;	
+    background: rgba(19,43,102, .85);
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
 }
 
 /* Base Layout Styles */
@@ -125,6 +155,13 @@ hidden or auto or clearing the floats with a CSS pseudo-element */
     margin-bottom: 0;
 }
 
+.icon-location {
+    width: 35px; 
+    position: absolute;
+    top: -15px;
+    right: -15px; 
+}
+
 /* Media Queries */
 
 /* When you use a mobile-first layout approach, you serve the basic layout styles 
@@ -135,7 +172,29 @@ Then, using media queries, you add breakpoints which adjust the layout for wider
 screens, and setting the left and right margins to auto centers the container.  */
 
 @media (min-width: 769px) {
+
+    body {
+        padding-top: 68px;  
+    }
     
+    /* An element with fixed positioning stays fixed to one spot on the page, 
+    regardless of the size of the browser window. */
+
+    /* When you use relative, absolute or fixed positioning on elements, you may end up 
+    with several elements occupying the same space. Elements appearing later in the 
+    code sit on top on elements appearing earlier. The z-index property is what prevents 
+    elements from overlapping other elements. An element with a higher z-index value 
+    overlaps an element with a lower z-index value. */
+
+    .main-header {
+        position: fixed; 
+        background: #fff; 
+        box-shadow: 0 1px 4 px rgba(0,0,0,.4);
+        width: 100%; 
+        top: 0;
+        z-index: 100;
+    }
+
     .container {
         width: 90%;
         margin: 0 auto;
@@ -212,15 +271,15 @@ screens, and setting the left and right margins to auto centers the container.  
     height, padding or margins values), but it behaves like an inline element because 
     it doesn't exist on a line of its own, and surrounding content flows around it. */
     
-    .feat-img {
-        /* width: 300px;
+    /* .feat-img {
+        width: 300px;
         float: left;
         margin-top: 5px;
         margin-right: 25px;
-        margin-bottom: 25px;  */
+        margin-bottom: 25px; 
         padding: 10px;
         border: solid 1px #d9e4ea; 
-    }
+    } */
 
     /* A clearfix fixes the collapsing issue by forcing a container to expand and 
     contain the floated elements. The clear property with the value both clears any 
